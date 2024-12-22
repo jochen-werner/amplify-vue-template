@@ -6,46 +6,46 @@ import { generateClient } from 'aws-amplify/data';
 
 const client = generateClient<Schema>();
 
-// create a reactive reference to the array of todos
-const todos = ref<Array<Schema['Todo']["type"]>>([]);
+// create a reactive reference to the array of Players
+const Players = ref<Array<Schema['Player']["type"]>>([]);
 
-function listTodos() {
-  client.models.Todo.observeQuery().subscribe({
+function listPlayers() {
+  client.models.Player.observeQuery().subscribe({
     next: ({ items, isSynced }) => {
-      todos.value = items
+      Players.value = items
      },
   }); 
 }
 
-function createTodo() {
-  client.models.Todo.create({
-    content: window.prompt("Todo content")
+function createPlayer() {
+  client.models.Player.create({
+    content: window.prompt("Player content")
   }).then(() => {
-    // After creating a new todo, update the list of todos
-    listTodos();
+    // After creating a new Player, update the list of Players
+    listPlayers();
   });
 }
     
-// fetch todos when the component is mounted
+// fetch Players when the component is mounted
  onMounted(() => {
-  listTodos();
+  listPlayers();
 });
 
 </script>
 
 <template>
   <main>
-    <h1>My todos</h1>
-    <button @click="createTodo">+ new</button>
+    <h1>My Players</h1>
+    <button @click="createPlayer">+ new</button>
     <ul>
       <li 
-        v-for="todo in todos" 
-        :key="todo.id">
-        {{ todo.content }}
+        v-for="Player in Players" 
+        :key="Player.id">
+        {{ Player.name }}
       </li>
     </ul>
     <div>
-      🥳 App successfully hosted. Try creating a new todo.
+      🥳 App successfully hosted. Try creating a new Player.
       <br />
       <a href="https://docs.amplify.aws/gen2/start/quickstart/nextjs-pages-router/">
         Review next steps of this tutorial.
