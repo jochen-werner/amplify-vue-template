@@ -9,7 +9,7 @@ frontend:
   phases:
     build:
       commands:
-        - npm run build
+        - yarn build
   artifacts:
     baseDirectory: dist
     files:
