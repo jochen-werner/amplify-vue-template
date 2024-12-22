@@ -9,9 +9,42 @@ specifies that any user authenticated via an API key can "create", "read",
 const schema = a.schema({
   Todo: a
     .model({
-      content: a.string(),
+      content: a.string()
     })
     .authorization((allow) => [allow.publicApiKey()]),
+
+  Server: a
+    .model({
+      name: a.string(),
+      online: a.boolean(),
+      map: a.string(),
+      game: a.string(),
+      vac_secured: a.boolean(),
+      bots: a.boolean(),
+      players_count: a.integer(),
+      players_max: a.integer(),
+      players: a.string(),
+      trigger: a.url()
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+
+  Player: a
+    .model({
+      steam_id: a.string(),
+      name: a.string(),
+      accuracy: a.string(),
+      deaths: a.integer(),
+      defused: a.integer(),
+      planted: a.integer(),
+      headshots: a.integer(),
+      points: a.string(),
+      kills: a.integer(),
+      tks: a.integer(),
+      weapons: a.string(),
+      is_bot: a.boolean()
+    })
+    .authorization((allow) => [allow.publicApiKey()])
+
 });
 
 export type Schema = ClientSchema<typeof schema>;
