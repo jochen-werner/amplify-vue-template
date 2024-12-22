@@ -17,15 +17,6 @@ function listPlayers() {
   }); 
 }
 
-function createPlayer() {
-  client.models.Player.create({
-    content: window.prompt("Player content")
-  }).then(() => {
-    // After creating a new Player, update the list of Players
-    listPlayers();
-  });
-}
-    
 // fetch Players when the component is mounted
  onMounted(() => {
   listPlayers();
@@ -36,7 +27,6 @@ function createPlayer() {
 <template>
   <main>
     <h1>My Players</h1>
-    <button @click="createPlayer">+ new</button>
     <ul>
       <li 
         v-for="Player in Players" 
