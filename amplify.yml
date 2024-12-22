@@ -1,6 +1,9 @@
 version: 1
 backend:
   phases:
+    preBuild:
+      commands:
+        - nvm install 18.19.1
     build:
       commands:
         - yarn install --immutable --immutable-cache --check-cache
